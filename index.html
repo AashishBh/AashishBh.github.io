@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- title section  -->
+    <div class="header" id="header">
+        <div class="logo">AB</div>
+        <div class="menu-items">
+            <ul>
+                <li><a href="#">Home</a></a>
+                <li>
+                <li><a href="#">About Me</a></li>
+                <li><a href="#">My Projects</a></li>
+            </ul>
+        </div>
+        <div class="intro">
+            <div class="rounded-image">
+            </div>
+            <!-- <img src="assets/DSC04656.JPG" alt="my image" /> -->
+            <div class="head-text">
+                <p>My name is Aashish.</p>
+                <p>Aspiring Web Developer</p>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <h1>My Github Repos</h1>
+        <div>
+            <ul id="Portfolio-list">
+                
+            </ul>
+        </div>
+    </div>
+    <script>
+        fetch("https://api.github.com/users/AashishBh/repos")
+            .then(response => response.json())
+            .then(function (data) {
+                console.log(data)
+                var list = document.getElementById('Portfolio-list');
+                for (i=0; i<data.JsonGetArrayLength(data); i++){
+                    list.insertAdjacentHTML('afterbegin','<li>Hello world </li>');
+                }
+            });
+
+
+
+    </script>
+</body>
+
+</html>
