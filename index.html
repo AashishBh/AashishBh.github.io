@@ -30,28 +30,58 @@
             <!-- <img src="assets/DSC04656.JPG" alt="my image" /> -->
             <div class="head-text">
                 <p>My name is Aashish.</p>
-                <p>Aspiring Web Developer</p>
+                <p>An Aspiring Web Developer</p>
             </div>
 
         </div>
     </div>
-    <div>
+    <!-- <div>
         <h1>My Github Repos</h1>
         <div>
             <ul id="Portfolio-list">
-                
             </ul>
         </div>
+    </div> -->
+    <div>
+        <h1>My Github Repos</h1>
+        <table>
+            <tr>
+              <th>Repository Name</th>
+              <th>Private</th>
+              <th>HTML URL</th>
+            </tr>
+            <tbody id = "content">
+            
+            </tbody>
+          </table>
+
     </div>
+
     <script>
         fetch("https://api.github.com/users/AashishBh/repos")
             .then(response => response.json())
             .then(function (data) {
                 console.log(data)
-                var list = document.getElementById('Portfolio-list');
-                for (i=0; i<data.JsonGetArrayLength(data); i++){
-                    list.insertAdjacentHTML('afterbegin','<li>Hello world </li>');
+                console.log(data[0].name);
+                // var list = document.getElementById('Portfolio-list');
+                console.log(data.length);
+                var items = [];
+                // for (var i = 0; i < data.length; i++) {
+                //     items.push(`<li>${data[i].name}</li>`)
+                // }
+                // list.innerHTML = items;
+                for (var i =0; i< data.length; i++){
+                    items.push(`
+                    <tr>
+                    <td>${data[i].name}</td>
+                    <td>${data[i].private}</td>
+                    <td>${data[i].html_url}</td>
+                    </tr>`)
                 }
+                console.log(items);
+                var list = document.getElementById('content');
+                list.innerHTML = items.join("");
+                // .join("") is to remove commans that are otherwise displayed after each row
             });
 
 
